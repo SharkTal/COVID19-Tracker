@@ -3,13 +3,15 @@ import { FormControl, MenuItem, Select, Card, CardContent } from '@material-ui/c
 import { useEffect, useState } from 'react';
 import InfoBox from './InfoBox';
 import Map from './Map';
-
+import TableList from './TableList';
+import LineGraph from './LineGraph';
 function App() {
   // https://disease.sh/v3/covid-19/countries
 
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState('worldwide');
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -36,7 +38,7 @@ function App() {
       });
   };
 
-  console.log("COUNTRY INFO >>>", countryInfo)
+ // console.log("COUNTRY INFO >>>", countryInfo)
 
   useEffect(() => {
     // async ->  send a request, wait for it, do something with it
@@ -54,7 +56,9 @@ function App() {
               })
           );
           // console.log(countries);
-          setCountries(countries)
+          setTableData(data);
+          console.log(data)
+          setCountries(countries);
 
         });
     };
@@ -103,9 +107,11 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           {/* Table */}
+            <TableList countries={tableData} />
           <h3>Wordwid new cases</h3>
           {/* Graph */}
-
+       
+                <LineGraph />
         </CardContent>
       </Card>
 
