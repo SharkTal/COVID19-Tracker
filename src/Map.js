@@ -1,11 +1,16 @@
 
-import React from 'react'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useState, useEffect } from 'react'
+import { MapContainer, TileLayer, Marker, Popup, Circle, CircleMarker } from 'react-leaflet';
 import './Map.css';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 
-function Map({ center, zoom }) {
+function Map({ countries, center, zoom}) {
+    console.log('THIS IS FROM MAP>>>', countries);
+    console.log('THIS MAPCENTER FORM MAP>>>', center);
+
+   
+
     return (
         <div className="map">
             <MapContainer className="map__container" center={center} zoom={zoom}>
@@ -14,7 +19,9 @@ function Map({ center, zoom }) {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 <Marker position={center}>
-                    <LocationOnIcon />
+                    <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                    </Popup>
                 </Marker>
             </MapContainer>,
         </div>

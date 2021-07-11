@@ -9,8 +9,6 @@ function InfoBox({ title, cases, total}) {
                     {title}
                 </Typography>
 
-               
-
                 {/* Number of new cases */}
                 <h2 className="infoBox__cases">{cases}</h2>
                 {/* Cases Total */}

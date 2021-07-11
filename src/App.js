@@ -19,6 +19,9 @@ function App() {
   const [mapZoom, setMapZoom] = useState(3);
   const [mapCountries, setMapCountries] = useState([])
 
+  const [countriesLocation, setCountriesLocation] = useState({});
+
+
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
       .then(response => response.json())
@@ -43,7 +46,7 @@ function App() {
         setCountryInfo(data);
 
         setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        console.log('THIS MAPCENTER>>>>',mapCenter)
+       
         setMapZoom(4);
       });
   };
@@ -69,6 +72,7 @@ function App() {
           setTableData(data);
           //console.log(data)
           setMapCountries(data);
+         
           setCountries(countries);
 
         });
